@@ -7,14 +7,15 @@ import {
 import _version from "./version.js";
 export const addonType = ADDON_TYPE.PLUGIN;
 export const type = PLUGIN_TYPE.OBJECT;
-export const id = "sample_addon";
-export const name = "Sample Addon";
+export const id = "flexbox_controller";
+export const name = "UI Controller";
 export const version = _version;
 export const minConstructVersion = undefined;
 export const author = "skymen";
 export const website = "https://www.construct.net";
 export const documentation = "https://www.construct.net";
-export const description = "Description";
+export const description =
+  "A plugin to control flexbox layouts in Construct 3 projects.";
 export const category = ADDON_CATEGORY.GENERAL;
 
 export const hasDomside = false;

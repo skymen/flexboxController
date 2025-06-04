@@ -1,68 +1,109 @@
 import { action, condition, expression } from "../template/aceDefine.js";
 
-const category = "Aces_In_Single_File";
+const category = "general";
 
 action(
   category,
-  "SampleAction",
+  "SetClassStyle",
   {
     highlight: false,
     deprecated: false,
     isAsync: false,
-    listName: "Sample Action",
-    displayText: "Sample Action {0}",
-    description: "This is a sample action",
+    listName: "Set Class Style",
+    displayText: "Set Class Style {0} to {1}",
+    description: "Sets the style for a class",
     params: [
       {
-        id: "param1",
-        name: "Param1",
-        desc: "This is a sample param",
+        id: "className",
+        name: "Class Name",
+        desc: "The name of the class to set the style for",
         type: "string",
-        initialValue: '"Hello World"',
+        initialValue: "",
+      },
+      {
+        id: "styleString",
+        name: "Style String",
+        desc: "The CSS style string to apply to the class",
+        type: "string",
+        initialValue: "",
       },
     ],
   },
-  function (param) {
-    console.log(param);
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log("Sample Action");
-        resolve();
-      }, 1000);
-    });
-  }
+  function (className, styleString) {
+    this.setClassStyle(className, styleString);
+  },
+  false
 );
 
-condition(
+action(
   category,
-  "SampleCondition",
+  "SetClassProperty",
   {
     highlight: false,
     deprecated: false,
-    listName: "Sample Condition",
-    displayText: "Sample Condition",
-    description: "This is a sample condition",
-    params: [],
+    isAsync: false,
+    listName: "Set Class Property",
+    displayText: "Set Class Property {0} {1} to {2}",
+    description: "Sets a property for a class",
+    params: [
+      {
+        id: "className",
+        name: "Class Name",
+        desc: "The name of the class to set the property for",
+        type: "string",
+        initialValue: "",
+      },
+      {
+        id: "property",
+        name: "Property",
+        desc: "The CSS property to set",
+        type: "string",
+        initialValue: "",
+      },
+      {
+        id: "value",
+        name: "Value",
+        desc: "The value to set for the property",
+        type: "string",
+        initialValue: "",
+      },
+    ],
   },
-  function () {
-    console.log("Sample Condition");
-    return true;
-  }
+  function (className, property, value) {
+    this.setClassProperty(className, property, value);
+  },
+  false
 );
 
-expression(
+action(
   category,
-  "SampleExpression",
+  "RemoveClassProperty",
   {
     highlight: false,
     deprecated: false,
-    returnType: "string",
-    description: "This is a sample expression",
-    params: [],
+    isAsync: false,
+    listName: "Remove Class Property",
+    displayText: "Remove Class Property {0} {1}",
+    description: "Removes a property from a class",
+    params: [
+      {
+        id: "className",
+        name: "Class Name",
+        desc: "The name of the class to remove the property from",
+        type: "string",
+        initialValue: "",
+      },
+      {
+        id: "property",
+        name: "Property",
+        desc: "The CSS property to remove",
+        type: "string",
+        initialValue: "",
+      },
+    ],
   },
-  function () {
-    console.log("Sample Expression");
-    return "Sample Expression";
+  function (className, property) {
+    this.removeClassProperty(className, property);
   },
   false
 );
