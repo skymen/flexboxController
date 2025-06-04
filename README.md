@@ -1,9 +1,9 @@
 <img src="./examples/cover.png" width="150" /><br>
 # UI Controller
 <i>A plugin to control flexbox layouts in Construct 3 projects.</i> <br>
-### Version 1.0.0.1
+### Version 1.0.0.2
 
-[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/flexboxController/releases/download/flexbox_controller-1.0.0.1.c3addon/flexbox_controller-1.0.0.1.c3addon)
+[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/flexboxController/releases/download/flexbox_controller-1.0.0.2.c3addon/flexbox_controller-1.0.0.2.c3addon)
 <br>
 <sub> [See all releases](https://github.com/skymen/flexboxController/releases) </sub> <br>
 
@@ -50,7 +50,7 @@ npm run dev
 | --- | --- | --- |
 | Remove Class Property | Removes a property from a class | Class Name             *(string)* <br>Property             *(string)* <br> |
 | Set Class Property | Sets a property for a class | Class Name             *(string)* <br>Property             *(string)* <br>Value             *(string)* <br> |
-| Set Class Style | Sets the style for a class | Class Name             *(string)* <br>Style String             *(string)* <br> |
+| Declare Class | Sets the style for a class | Class Name             *(string)* <br>Style String             *(string)* <br> |
 
 
 ---

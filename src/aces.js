@@ -6,11 +6,11 @@ action(
   category,
   "SetClassStyle",
   {
-    highlight: false,
+    highlight: true,
     deprecated: false,
     isAsync: false,
-    listName: "Set Class Style",
-    displayText: "Set Class Style {0} to {1}",
+    listName: "Declare Class",
+    displayText: "Declare class [b]{0}[/b] to [i]{1}[/i]",
     description: "Sets the style for a class",
     params: [
       {
@@ -43,7 +43,7 @@ action(
     deprecated: false,
     isAsync: false,
     listName: "Set Class Property",
-    displayText: "Set Class Property {0} {1} to {2}",
+    displayText: "Set property [b]{1}[/b] to [b]{2}[/b] in class [b]{0}[/b]",
     description: "Sets a property for a class",
     params: [
       {
@@ -83,7 +83,7 @@ action(
     deprecated: false,
     isAsync: false,
     listName: "Remove Class Property",
-    displayText: "Remove Class Property {0} {1}",
+    displayText: "Remove property [b]{1}[/b] from class [b]{0}[/b]",
     description: "Removes a property from a class",
     params: [
       {
