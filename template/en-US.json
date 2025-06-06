@@ -6,7 +6,7 @@
       "flexbox_controller": {
         "name": "UI Controller",
         "description": "A plugin to control flexbox layouts in Construct 3 projects.",
-        "help-url": "https://www.construct.net",
+        "help-url": "https://constructfund.github.io/construct3-ui",
         "aceCategories": {
           "general": "general"
         },

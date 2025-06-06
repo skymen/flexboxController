@@ -12,8 +12,8 @@ export const name = "UI Controller";
 export const version = _version;
 export const minConstructVersion = undefined;
 export const author = "skymen";
-export const website = "https://www.construct.net";
-export const documentation = "https://www.construct.net";
+export const website = "https://constructfund.github.io/construct3-ui";
+export const documentation = "https://constructfund.github.io/construct3-ui";
 export const description =
   "A plugin to control flexbox layouts in Construct 3 projects.";
 export const category = ADDON_CATEGORY.GENERAL;
