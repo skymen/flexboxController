@@ -1,0 +1,70 @@
+{
+  "languageTag": "tr-TR",
+  "fileDescription": "Flexbox_controller için dizeler.",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "UI Kontrolcüsü",
+        "description": "Construct 3 projelerinde flexbox düzenlerini kontrol etmek için bir eklenti.",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "genel"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "Sınıf Özelliğini Kaldır",
+            "display-text": "[b]{0}[/b] sınıfından [b]{1}[/b] özelliğini kaldır",
+            "description": "Bir sınıftan bir özelliği kaldırır",
+            "params": {
+              "className": {
+                "name": "Sınıf Adı",
+                "desc": "Özelliğin kaldırılacağı sınıfın adı"
+              },
+              "property": {
+                "name": "Özellik",
+                "desc": "Kaldırılacak CSS özelliği"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "Sınıf Özelliğini Ayarla",
+            "display-text": "[b]{0}[/b] sınıfında [b]{1}[/b] özelliğini [b]{2}[/b] olarak ayarla",
+            "description": "Bir sınıf için bir özelliği ayarlar",
+            "params": {
+              "className": {
+                "name": "Sınıf Adı",
+                "desc": "Özelliğin ayarlanacağı sınıfın adı"
+              },
+              "property": {
+                "name": "Özellik",
+                "desc": "Ayarlanacak CSS özelliği"
+              },
+              "value": {
+                "name": "Değer",
+                "desc": "Özellik için ayarlanacak değer"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "Sınıfı Tanımla",
+            "display-text": "[b]{0}[/b] sınıfını [i]{1}[/i] olarak tanımla",
+            "description": "Bir sınıf için stili ayarlar",
+            "params": {
+              "className": {
+                "name": "Sınıf Adı",
+                "desc": "Stilin ayarlanacağı sınıfın adı"
+              },
+              "styleString": {
+                "name": "Stil Dizesi",
+                "desc": "Sınıfa uygulanacak CSS stil dizesi"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

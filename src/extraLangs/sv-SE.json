@@ -1,0 +1,70 @@
+{
+  "languageTag": "sv-SE",
+  "fileDescription": "Strängar för flexbox_controller.",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "UI Controller",
+        "description": "Ett plugin för att kontrollera flexbox-layout i Construct 3-projekt.",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "allmänt"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "Ta bort klassens egenskap",
+            "display-text": "Ta bort egenskap [b]{1}[/b] från klass [b]{0}[/b]",
+            "description": "Tar bort en egenskap från en klass",
+            "params": {
+              "className": {
+                "name": "Klassnamn",
+                "desc": "Namnet på klassen att ta bort egenskapen från"
+              },
+              "property": {
+                "name": "Egenskap",
+                "desc": "Den CSS-egenskap som ska tas bort"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "Ställ in klassens egenskap",
+            "display-text": "Ställ in egenskap [b]{1}[/b] till [b]{2}[/b] i klass [b]{0}[/b]",
+            "description": "Ställer in en egenskap för en klass",
+            "params": {
+              "className": {
+                "name": "Klassnamn",
+                "desc": "Namnet på klassen att ställa in egenskapen för"
+              },
+              "property": {
+                "name": "Egenskap",
+                "desc": "Den CSS-egenskap som ska ställas in"
+              },
+              "value": {
+                "name": "Värde",
+                "desc": "Värdet som ska ställas in för egenskapen"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "Deklarera klass",
+            "display-text": "Deklarera klass [b]{0}[/b] till [i]{1}[/i]",
+            "description": "Ställer in stilen för en klass",
+            "params": {
+              "className": {
+                "name": "Klassnamn",
+                "desc": "Namnet på klassen att ställa in stilen för"
+              },
+              "styleString": {
+                "name": "Stilsträng",
+                "desc": "Den CSS-stilsträng som ska tillämpas på klassen"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

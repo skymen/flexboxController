@@ -1,0 +1,70 @@
+{
+  "languageTag": "zh-CN",
+  "fileDescription": "flexbox_controller 的字符串。",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "用户界面控制器",
+        "description": "一个用于控制 Construct 3 项目中 flexbox 布局的插件。",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "常规"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "移除类属性",
+            "display-text": "从类 [b]{0}[/b] 中移除属性 [b]{1}[/b]",
+            "description": "从类中移除一个属性",
+            "params": {
+              "className": {
+                "name": "类名",
+                "desc": "要移除属性的类的名称"
+              },
+              "property": {
+                "name": "属性",
+                "desc": "要移除的 CSS 属性"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "设置类属性",
+            "display-text": "将属性 [b]{1}[/b] 设置为 [b]{2}[/b] 在类 [b]{0}[/b] 中",
+            "description": "为类设置一个属性",
+            "params": {
+              "className": {
+                "name": "类名",
+                "desc": "要为其设置属性的类的名称"
+              },
+              "property": {
+                "name": "属性",
+                "desc": "要设置的 CSS 属性"
+              },
+              "value": {
+                "name": "值",
+                "desc": "要为属性设置的值"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "声明类",
+            "display-text": "将类 [b]{0}[/b] 声明为 [i]{1}[/i]",
+            "description": "为类设置样式",
+            "params": {
+              "className": {
+                "name": "类名",
+                "desc": "要为其设置样式的类的名称"
+              },
+              "styleString": {
+                "name": "样式字符串",
+                "desc": "要应用于类的 CSS 样式字符串"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

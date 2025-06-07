@@ -1,0 +1,70 @@
+{
+  "languageTag": "it-IT",
+  "fileDescription": "Stringhe per flexbox_controller.",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "Controllore UI",
+        "description": "Un plugin per controllare i layout flexbox nei progetti di Construct 3.",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "generale"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "Rimuovi Proprietà Classe",
+            "display-text": "Rimuovi proprietà [b]{1}[/b] dalla classe [b]{0}[/b]",
+            "description": "Rimuove una proprietà da una classe",
+            "params": {
+              "className": {
+                "name": "Nome Classe",
+                "desc": "Il nome della classe da cui rimuovere la proprietà"
+              },
+              "property": {
+                "name": "Proprietà",
+                "desc": "La proprietà CSS da rimuovere"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "Imposta Proprietà Classe",
+            "display-text": "Imposta proprietà [b]{1}[/b] a [b]{2}[/b] nella classe [b]{0}[/b]",
+            "description": "Imposta una proprietà per una classe",
+            "params": {
+              "className": {
+                "name": "Nome Classe",
+                "desc": "Il nome della classe per cui impostare la proprietà"
+              },
+              "property": {
+                "name": "Proprietà",
+                "desc": "La proprietà CSS da impostare"
+              },
+              "value": {
+                "name": "Valore",
+                "desc": "Il valore da impostare per la proprietà"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "Dichiara Classe",
+            "display-text": "Dichiara classe [b]{0}[/b] a [i]{1}[/i]",
+            "description": "Imposta lo stile per una classe",
+            "params": {
+              "className": {
+                "name": "Nome Classe",
+                "desc": "Il nome della classe per cui impostare lo stile"
+              },
+              "styleString": {
+                "name": "Stringa Stile",
+                "desc": "La stringa di stile CSS da applicare alla classe"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

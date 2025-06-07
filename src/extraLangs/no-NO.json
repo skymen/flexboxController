@@ -1,0 +1,70 @@
+{
+  "languageTag": "no-NO",
+  "fileDescription": "Strenger for flexbox_controller.",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "UI Kontroller",
+        "description": "En plugin for å kontrollere flexbox-layout i Construct 3-prosjekter.",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "generell"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "Fjern Klasse Egenskap",
+            "display-text": "Fjern egenskap [b]{1}[/b] fra klasse [b]{0}[/b]",
+            "description": "Fjerner en egenskap fra en klasse",
+            "params": {
+              "className": {
+                "name": "Klassenavn",
+                "desc": "Navnet på klassen å fjerne egenskapen fra"
+              },
+              "property": {
+                "name": "Egenskap",
+                "desc": "CSS-egenskapen som skal fjernes"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "Sett Klasse Egenskap",
+            "display-text": "Sett egenskap [b]{1}[/b] til [b]{2}[/b] i klasse [b]{0}[/b]",
+            "description": "Setter en egenskap for en klasse",
+            "params": {
+              "className": {
+                "name": "Klassenavn",
+                "desc": "Navnet på klassen å sette egenskapen for"
+              },
+              "property": {
+                "name": "Egenskap",
+                "desc": "CSS-egenskapen som skal settes"
+              },
+              "value": {
+                "name": "Verdi",
+                "desc": "Verdien som skal settes for egenskapen"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "Deklarer Klasse",
+            "display-text": "Deklarer klasse [b]{0}[/b] til [i]{1}[/i]",
+            "description": "Setter stilen for en klasse",
+            "params": {
+              "className": {
+                "name": "Klassenavn",
+                "desc": "Navnet på klassen å sette stilen for"
+              },
+              "styleString": {
+                "name": "Stilstreng",
+                "desc": "CSS-stilstrengen som skal brukes på klassen"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

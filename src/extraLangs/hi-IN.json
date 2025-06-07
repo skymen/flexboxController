@@ -1,0 +1,70 @@
+{
+  "languageTag": "hi-IN",
+  "fileDescription": "फ्लेक्सबॉक्स_कंट्रोलर के लिए स्ट्रिंग्स।",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "यूआई कंट्रोलर",
+        "description": "कंस्ट्रक्ट 3 प्रोजेक्ट्स में फ्लेक्सबॉक्स लेआउट को नियंत्रित करने के लिए एक प्लगइन।",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "सामान्य"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "क्लास प्रॉपर्टी हटाएं",
+            "display-text": "क्लास [b]{0}[/b] से प्रॉपर्टी [b]{1}[/b] हटाएं",
+            "description": "क्लास से एक प्रॉपर्टी हटाता है",
+            "params": {
+              "className": {
+                "name": "क्लास का नाम",
+                "desc": "जिस क्लास से प्रॉपर्टी हटानी है उसका नाम"
+              },
+              "property": {
+                "name": "प्रॉपर्टी",
+                "desc": "हटाने के लिए CSS प्रॉपर्टी"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "क्लास प्रॉपर्टी सेट करें",
+            "display-text": "क्लास [b]{0}[/b] में प्रॉपर्टी [b]{1}[/b] को [b]{2}[/b] पर सेट करें",
+            "description": "क्लास के लिए एक प्रॉपर्टी सेट करता है",
+            "params": {
+              "className": {
+                "name": "क्लास का नाम",
+                "desc": "जिस क्लास के लिए प्रॉपर्टी सेट करनी है उसका नाम"
+              },
+              "property": {
+                "name": "प्रॉपर्टी",
+                "desc": "सेट करने के लिए CSS प्रॉपर्टी"
+              },
+              "value": {
+                "name": "मान",
+                "desc": "प्रॉपर्टी के लिए सेट करने के लिए मान"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "क्लास घोषित करें",
+            "display-text": "क्लास [b]{0}[/b] को [i]{1}[/i] पर घोषित करें",
+            "description": "क्लास के लिए स्टाइल सेट करता है",
+            "params": {
+              "className": {
+                "name": "क्लास का नाम",
+                "desc": "जिस क्लास के लिए स्टाइल सेट करनी है उसका नाम"
+              },
+              "styleString": {
+                "name": "स्टाइल स्ट्रिंग",
+                "desc": "क्लास पर लागू करने के लिए CSS स्टाइल स्ट्रिंग"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

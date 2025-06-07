@@ -1,0 +1,70 @@
+{
+  "languageTag": "nl-NL",
+  "fileDescription": "Strings voor flexbox_controller.",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "UI Controller",
+        "description": "Een plugin om flexbox-indelingen in Construct 3-projecten te beheren.",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "algemeen"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "Verwijder Klasse Eigenschap",
+            "display-text": "Verwijder eigenschap [b]{1}[/b] van klasse [b]{0}[/b]",
+            "description": "Verwijdert een eigenschap van een klasse",
+            "params": {
+              "className": {
+                "name": "Klasse Naam",
+                "desc": "De naam van de klasse waarvan de eigenschap moet worden verwijderd"
+              },
+              "property": {
+                "name": "Eigenschap",
+                "desc": "De CSS-eigenschap die moet worden verwijderd"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "Stel Klasse Eigenschap In",
+            "display-text": "Stel eigenschap [b]{1}[/b] in op [b]{2}[/b] in klasse [b]{0}[/b]",
+            "description": "Stelt een eigenschap in voor een klasse",
+            "params": {
+              "className": {
+                "name": "Klasse Naam",
+                "desc": "De naam van de klasse waarvoor de eigenschap moet worden ingesteld"
+              },
+              "property": {
+                "name": "Eigenschap",
+                "desc": "De CSS-eigenschap die moet worden ingesteld"
+              },
+              "value": {
+                "name": "Waarde",
+                "desc": "De waarde die moet worden ingesteld voor de eigenschap"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "Declareer Klasse",
+            "display-text": "Declareer klasse [b]{0}[/b] naar [i]{1}[/i]",
+            "description": "Stelt de stijl in voor een klasse",
+            "params": {
+              "className": {
+                "name": "Klasse Naam",
+                "desc": "De naam van de klasse waarvoor de stijl moet worden ingesteld"
+              },
+              "styleString": {
+                "name": "Stijl String",
+                "desc": "De CSS-stijlstring die op de klasse moet worden toegepast"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

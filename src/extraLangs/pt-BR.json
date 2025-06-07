@@ -1,0 +1,70 @@
+{
+  "languageTag": "pt-BR",
+  "fileDescription": "Strings para flexbox_controller.",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "Controlador de UI",
+        "description": "Um plugin para controlar layouts flexbox em projetos do Construct 3.",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "geral"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "Remover Propriedade de Classe",
+            "display-text": "Remover propriedade [b]{1}[/b] da classe [b]{0}[/b]",
+            "description": "Remove uma propriedade de uma classe",
+            "params": {
+              "className": {
+                "name": "Nome da Classe",
+                "desc": "O nome da classe da qual remover a propriedade"
+              },
+              "property": {
+                "name": "Propriedade",
+                "desc": "A propriedade CSS a ser removida"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "Definir Propriedade de Classe",
+            "display-text": "Definir propriedade [b]{1}[/b] para [b]{2}[/b] na classe [b]{0}[/b]",
+            "description": "Define uma propriedade para uma classe",
+            "params": {
+              "className": {
+                "name": "Nome da Classe",
+                "desc": "O nome da classe para a qual definir a propriedade"
+              },
+              "property": {
+                "name": "Propriedade",
+                "desc": "A propriedade CSS a ser definida"
+              },
+              "value": {
+                "name": "Valor",
+                "desc": "O valor a ser definido para a propriedade"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "Declarar Classe",
+            "display-text": "Declarar classe [b]{0}[/b] para [i]{1}[/i]",
+            "description": "Define o estilo para uma classe",
+            "params": {
+              "className": {
+                "name": "Nome da Classe",
+                "desc": "O nome da classe para a qual definir o estilo"
+              },
+              "styleString": {
+                "name": "String de Estilo",
+                "desc": "A string de estilo CSS a ser aplicada à classe"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

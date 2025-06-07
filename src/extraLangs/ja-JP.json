@@ -1,0 +1,70 @@
+{
+  "languageTag": "ja-JP",
+  "fileDescription": "flexbox_controllerの文字列。",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "UIコントローラー",
+        "description": "Construct 3プロジェクトのflexboxレイアウトを制御するためのプラグイン。",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "一般"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "クラスプロパティを削除",
+            "display-text": "クラス[b]{0}[/b]からプロパティ[b]{1}[/b]を削除",
+            "description": "クラスからプロパティを削除します",
+            "params": {
+              "className": {
+                "name": "クラス名",
+                "desc": "プロパティを削除するクラスの名前"
+              },
+              "property": {
+                "name": "プロパティ",
+                "desc": "削除するCSSプロパティ"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "クラスプロパティを設定",
+            "display-text": "クラス[b]{0}[/b]のプロパティ[b]{1}[/b]を[b]{2}[/b]に設定",
+            "description": "クラスのプロパティを設定します",
+            "params": {
+              "className": {
+                "name": "クラス名",
+                "desc": "プロパティを設定するクラスの名前"
+              },
+              "property": {
+                "name": "プロパティ",
+                "desc": "設定するCSSプロパティ"
+              },
+              "value": {
+                "name": "値",
+                "desc": "プロパティに設定する値"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "クラスを宣言",
+            "display-text": "クラス[b]{0}[/b]を[i]{1}[/i]として宣言",
+            "description": "クラスのスタイルを設定します",
+            "params": {
+              "className": {
+                "name": "クラス名",
+                "desc": "スタイルを設定するクラスの名前"
+              },
+              "styleString": {
+                "name": "スタイル文字列",
+                "desc": "クラスに適用するCSSスタイル文字列"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

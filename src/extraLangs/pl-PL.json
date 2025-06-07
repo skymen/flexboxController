@@ -1,0 +1,70 @@
+{
+  "languageTag": "pl-PL",
+  "fileDescription": "Napisy dla flexbox_controller.",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "Kontroler UI",
+        "description": "Wtyczka do kontrolowania układów flexbox w projektach Construct 3.",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "ogólne"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "Usuń Właściwość Klasy",
+            "display-text": "Usuń właściwość [b]{1}[/b] z klasy [b]{0}[/b]",
+            "description": "Usuwa właściwość z klasy",
+            "params": {
+              "className": {
+                "name": "Nazwa Klasy",
+                "desc": "Nazwa klasy, z której należy usunąć właściwość"
+              },
+              "property": {
+                "name": "Właściwość",
+                "desc": "Właściwość CSS do usunięcia"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "Ustaw Właściwość Klasy",
+            "display-text": "Ustaw właściwość [b]{1}[/b] na [b]{2}[/b] w klasie [b]{0}[/b]",
+            "description": "Ustawia właściwość dla klasy",
+            "params": {
+              "className": {
+                "name": "Nazwa Klasy",
+                "desc": "Nazwa klasy, dla której należy ustawić właściwość"
+              },
+              "property": {
+                "name": "Właściwość",
+                "desc": "Właściwość CSS do ustawienia"
+              },
+              "value": {
+                "name": "Wartość",
+                "desc": "Wartość do ustawienia dla właściwości"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "Zadeklaruj Klasę",
+            "display-text": "Zadeklaruj klasę [b]{0}[/b] jako [i]{1}[/i]",
+            "description": "Ustawia styl dla klasy",
+            "params": {
+              "className": {
+                "name": "Nazwa Klasy",
+                "desc": "Nazwa klasy, dla której należy ustawić styl"
+              },
+              "styleString": {
+                "name": "String Stylu",
+                "desc": "String stylu CSS do zastosowania w klasie"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

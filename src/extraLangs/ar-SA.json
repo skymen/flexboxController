@@ -1,0 +1,70 @@
+{
+  "languageTag": "ar-SA",
+  "fileDescription": "سلاسل لـ flexbox_controller.",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "وحدة التحكم في واجهة المستخدم",
+        "description": "إضافة للتحكم في تخطيطات الفليكس بوكس في مشاريع Construct 3.",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "عام"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "إزالة خاصية الفئة",
+            "display-text": "إزالة الخاصية [b]{1}[/b] من الفئة [b]{0}[/b]",
+            "description": "يتم إزالة خاصية من فئة",
+            "params": {
+              "className": {
+                "name": "اسم الفئة",
+                "desc": "اسم الفئة التي سيتم إزالة الخاصية منها"
+              },
+              "property": {
+                "name": "خاصية",
+                "desc": "خاصية CSS التي سيتم إزالتها"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "تعيين خاصية الفئة",
+            "display-text": "تعيين الخاصية [b]{1}[/b] إلى [b]{2}[/b] في الفئة [b]{0}[/b]",
+            "description": "يتم تعيين خاصية لفئة",
+            "params": {
+              "className": {
+                "name": "اسم الفئة",
+                "desc": "اسم الفئة التي سيتم تعيين الخاصية لها"
+              },
+              "property": {
+                "name": "خاصية",
+                "desc": "خاصية CSS التي سيتم تعيينها"
+              },
+              "value": {
+                "name": "قيمة",
+                "desc": "القيمة التي سيتم تعيينها للخاصية"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "إعلان الفئة",
+            "display-text": "إعلان الفئة [b]{0}[/b] إلى [i]{1}[/i]",
+            "description": "يتم تعيين النمط لفئة",
+            "params": {
+              "className": {
+                "name": "اسم الفئة",
+                "desc": "اسم الفئة التي سيتم تعيين النمط لها"
+              },
+              "styleString": {
+                "name": "سلسلة النمط",
+                "desc": "سلسلة نمط CSS التي سيتم تطبيقها على الفئة"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

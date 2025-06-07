@@ -1,0 +1,70 @@
+{
+  "languageTag": "ru-RU",
+  "fileDescription": "Строки для flexbox_controller.",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "UI Контроллер",
+        "description": "Плагин для управления макетами flexbox в проектах Construct 3.",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "общий"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "Удалить свойство класса",
+            "display-text": "Удалить свойство [b]{1}[/b] из класса [b]{0}[/b]",
+            "description": "Удаляет свойство из класса",
+            "params": {
+              "className": {
+                "name": "Имя класса",
+                "desc": "Имя класса, из которого нужно удалить свойство"
+              },
+              "property": {
+                "name": "Свойство",
+                "desc": "CSS-свойство для удаления"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "Установить свойство класса",
+            "display-text": "Установить свойство [b]{1}[/b] на [b]{2}[/b] в классе [b]{0}[/b]",
+            "description": "Устанавливает свойство для класса",
+            "params": {
+              "className": {
+                "name": "Имя класса",
+                "desc": "Имя класса, для которого нужно установить свойство"
+              },
+              "property": {
+                "name": "Свойство",
+                "desc": "CSS-свойство для установки"
+              },
+              "value": {
+                "name": "Значение",
+                "desc": "Значение для установки для свойства"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "Объявить класс",
+            "display-text": "Объявить класс [b]{0}[/b] как [i]{1}[/i]",
+            "description": "Устанавливает стиль для класса",
+            "params": {
+              "className": {
+                "name": "Имя класса",
+                "desc": "Имя класса, для которого нужно установить стиль"
+              },
+              "styleString": {
+                "name": "Строка стиля",
+                "desc": "CSS-строка стиля для применения к классу"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

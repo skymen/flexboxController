@@ -1,0 +1,70 @@
+{
+  "languageTag": "ko-KR",
+  "fileDescription": "flexbox_controller의 문자열.",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "UI 컨트롤러",
+        "description": "Construct 3 프로젝트에서 flexbox 레이아웃을 제어하는 플러그인입니다.",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "일반"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "클래스 속성 제거",
+            "display-text": "클래스 [b]{0}[/b]에서 속성 [b]{1}[/b] 제거",
+            "description": "클래스에서 속성을 제거합니다.",
+            "params": {
+              "className": {
+                "name": "클래스 이름",
+                "desc": "속성을 제거할 클래스의 이름"
+              },
+              "property": {
+                "name": "속성",
+                "desc": "제거할 CSS 속성"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "클래스 속성 설정",
+            "display-text": "클래스 [b]{0}[/b]에 속성 [b]{1}[/b]을 [b]{2}[/b]로 설정",
+            "description": "클래스에 속성을 설정합니다.",
+            "params": {
+              "className": {
+                "name": "클래스 이름",
+                "desc": "속성을 설정할 클래스의 이름"
+              },
+              "property": {
+                "name": "속성",
+                "desc": "설정할 CSS 속성"
+              },
+              "value": {
+                "name": "값",
+                "desc": "속성에 설정할 값"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "클래스 선언",
+            "display-text": "클래스 [b]{0}[/b]을 [i]{1}[/i]로 선언",
+            "description": "클래스의 스타일을 설정합니다.",
+            "params": {
+              "className": {
+                "name": "클래스 이름",
+                "desc": "스타일을 설정할 클래스의 이름"
+              },
+              "styleString": {
+                "name": "스타일 문자열",
+                "desc": "클래스에 적용할 CSS 스타일 문자열"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}

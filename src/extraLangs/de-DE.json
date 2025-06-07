@@ -1,0 +1,70 @@
+{
+  "languageTag": "de-DE",
+  "fileDescription": "Strings für flexbox_controller.",
+  "text": {
+    "plugins": {
+      "flexbox_controller": {
+        "name": "UI Controller",
+        "description": "Ein Plugin zur Steuerung von Flexbox-Layouts in Construct 3-Projekten.",
+        "help-url": "https://constructfund.github.io/construct3-ui",
+        "aceCategories": {
+          "general": "allgemein"
+        },
+        "properties": {},
+        "actions": {
+          "RemoveClassProperty": {
+            "list-name": "Klassenattribut entfernen",
+            "display-text": "Eigenschaft [b]{1}[/b] von Klasse [b]{0}[/b] entfernen",
+            "description": "Entfernt eine Eigenschaft von einer Klasse",
+            "params": {
+              "className": {
+                "name": "Klassenname",
+                "desc": "Der Name der Klasse, von der die Eigenschaft entfernt werden soll"
+              },
+              "property": {
+                "name": "Eigenschaft",
+                "desc": "Die CSS-Eigenschaft, die entfernt werden soll"
+              }
+            }
+          },
+          "SetClassProperty": {
+            "list-name": "Klassenattribut festlegen",
+            "display-text": "Eigenschaft [b]{1}[/b] auf [b]{2}[/b] in Klasse [b]{0}[/b] setzen",
+            "description": "Legt eine Eigenschaft für eine Klasse fest",
+            "params": {
+              "className": {
+                "name": "Klassenname",
+                "desc": "Der Name der Klasse, für die die Eigenschaft festgelegt werden soll"
+              },
+              "property": {
+                "name": "Eigenschaft",
+                "desc": "Die CSS-Eigenschaft, die festgelegt werden soll"
+              },
+              "value": {
+                "name": "Wert",
+                "desc": "Der Wert, der für die Eigenschaft festgelegt werden soll"
+              }
+            }
+          },
+          "SetClassStyle": {
+            "list-name": "Klasse deklarieren",
+            "display-text": "Klasse [b]{0}[/b] auf [i]{1}[/i] deklarieren",
+            "description": "Legt den Stil für eine Klasse fest",
+            "params": {
+              "className": {
+                "name": "Klassenname",
+                "desc": "Der Name der Klasse, für die der Stil festgelegt werden soll"
+              },
+              "styleString": {
+                "name": "Stil-String",
+                "desc": "Der CSS-Stil-String, der auf die Klasse angewendet werden soll"
+              }
+            }
+          }
+        },
+        "conditions": {},
+        "expressions": {}
+      }
+    }
+  }
+}
