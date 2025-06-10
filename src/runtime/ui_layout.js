@@ -1,8 +1,3 @@
-/**
- * Enhanced UI Layout System for Construct 3 with Full Flex Support
- * Implements flex-grow, flex-shrink, flex-basis, align-self, and justify-self
- */
-
 class UILayout {
   constructor(runtime) {
     this.runtime = runtime;
@@ -445,8 +440,11 @@ class UILayout {
     if (!styles) return;
     const parent = instance.getParent();
     const parentBoxModel = this.getBoxModel(parent);
-    const isHorizontal = styles.display === "horizontal";
-    const isVertical = styles.display === "vertical" || !styles.display;
+    const isRow = styles.display === "row" || styles.display === "row-reverse";
+    const isColumn =
+      styles.display === "column" ||
+      styles.display === "column-reverse" ||
+      !styles.display;
 
     // Apply width percentages if present
     if (
@@ -508,7 +506,7 @@ class UILayout {
       const percentValue = parseFloat(styles.flexBasis) || 0;
 
       if (percentValue >= 0) {
-        if (isHorizontal) {
+        if (isRow) {
           const availableWidth =
             this.getInstanceWidth(parent) -
             parentBoxModel.padding.left -
@@ -520,7 +518,7 @@ class UILayout {
             instance,
             (availableWidth * percentValue) / 100
           );
-        } else if (isVertical) {
+        } else if (isColumn) {
           const availableHeight =
             this.getInstanceHeight(parent) -
             parentBoxModel.padding.top -
@@ -604,12 +602,13 @@ class UILayout {
   getLayoutProperties(instance) {
     const styles = this.getInstanceStyles(instance);
     return {
-      display: styles.display || "vertical", // vertical, horizontal, grid
+      display: styles.display || "column", // column, row, column-reverse, row-reverse, grid
       position: styles.position || "relative", // relative, absolute, anchor
       gap: styles.gap || 0,
       padding: styles.padding || 0,
       alignItems: styles.alignItems || styles.alignment || "start", // start, center, end
       justifyContent: styles.justifyContent || "start", // start, center, end, space-between, space-around
+      flexWrap: styles.flexWrap || "nowrap", // nowrap, wrap, wrap-reverse
       columns: styles.columns || 2,
       fitContent: styles.fitContent === "true",
       top: styles.top,
@@ -636,11 +635,17 @@ class UILayout {
     const layoutChildren = children || this.getLayoutChildren(instance);
 
     switch (layoutProps.display) {
-      case "vertical":
-        this.layoutVertical(instance, layoutProps, layoutChildren);
+      case "column":
+        this.layoutColumn(instance, layoutProps, layoutChildren);
         break;
-      case "horizontal":
-        this.layoutHorizontal(instance, layoutProps, layoutChildren);
+      case "column-reverse":
+        this.layoutColumnReverse(instance, layoutProps, layoutChildren);
+        break;
+      case "row":
+        this.layoutRow(instance, layoutProps, layoutChildren);
+        break;
+      case "row-reverse":
+        this.layoutRowReverse(instance, layoutProps, layoutChildren);
         break;
       case "grid":
         this.layoutGrid(instance, layoutProps, layoutChildren);
@@ -659,7 +664,8 @@ class UILayout {
 
     // Different sizing logic based on display type
     switch (layoutProps.display) {
-      case "vertical":
+      case "column":
+      case "column-reverse":
         // Calculate total height and max width
         let totalHeightVertical =
           containerBoxModel.padding.top + containerBoxModel.padding.bottom;
@@ -690,7 +696,8 @@ class UILayout {
         );
         break;
 
-      case "horizontal":
+      case "row":
+      case "row-reverse":
         // Calculate total width and max height
         let totalWidthHorizontal =
           containerBoxModel.padding.left + containerBoxModel.padding.right;
@@ -1343,6 +1350,30 @@ class UILayout {
   }
 
   /**
+   * Layout children in reverse vertical stack (column-reverse direction)
+   * @param {WorldInstance} container - The container
+   * @param {Object} layoutProps - Layout properties
+   * @param {Array} children - Array of child instances
+   */
+  layoutColumnReverse(container, layoutProps, children) {
+    // Use the same logic as layoutColumn but reverse the children order
+    const reversedChildren = [...children].reverse();
+    this.layoutColumn(container, layoutProps, reversedChildren);
+  }
+
+  /**
+   * Layout children in reverse horizontal row (row-reverse direction)
+   * @param {WorldInstance} container - The container
+   * @param {Object} layoutProps - Layout properties
+   * @param {Array} children - Array of child instances
+   */
+  layoutRowReverse(container, layoutProps, children) {
+    // Use the same logic as layoutRow but reverse the children order
+    const reversedChildren = [...children].reverse();
+    this.layoutRow(container, layoutProps, reversedChildren);
+  }
+
+  /**
    * Apply styles to an instance
    * @param {WorldInstance} instance - The instance to apply styles to
    * @param {Object} styles - Style object to apply
@@ -1438,17 +1469,20 @@ class UILayout {
     }
 
     // Apply flex-basis for initial dimension (only if not percentage-based)
-    const isHorizontal = styles.display === "horizontal";
-    const isVertical = styles.display === "vertical" || !styles.display;
+    const isRow = styles.display === "row" || styles.display === "row-reverse";
+    const isColumn =
+      styles.display === "column" ||
+      styles.display === "column-reverse" ||
+      !styles.display;
 
-    if (parent && (isHorizontal || isVertical)) {
+    if (parent && (isRow || isColumn)) {
       const flexBasis = styles.flexBasis;
 
       if (flexBasis && flexBasis !== "auto" && typeof flexBasis === "number") {
         // Apply flex-basis along the main axis (width for row, height for column)
-        if (isHorizontal) {
+        if (isRow) {
           this.setInstanceWidth(instance, flexBasis);
-        } else if (isVertical) {
+        } else if (isColumn) {
           this.setInstanceHeight(instance, flexBasis);
         }
       }
@@ -1494,18 +1528,19 @@ class UILayout {
   }
 
   /**
-   * Layout children in a vertical stack with flex distribution
+   * Layout children in a vertical stack with flex distribution (column direction)
    * @param {WorldInstance} container - The container
    * @param {Object} layoutProps - Layout properties
    * @param {Array} children - Array of child instances
    */
-  layoutVertical(container, layoutProps, children) {
+  layoutColumn(container, layoutProps, children) {
     // Get container box model
     const containerBoxModel = this.getBoxModel(container);
 
     // Extract layout parameters
     const gap = layoutProps.gap || 0;
     const alignment = layoutProps.alignItems || "start";
+    const flexWrap = layoutProps.flexWrap || "nowrap";
 
     // Calculate available space
     const contentHeight =
@@ -1521,6 +1556,12 @@ class UILayout {
       containerBoxModel.padding.right -
       containerBoxModel.border.left -
       containerBoxModel.border.right;
+
+    // Handle flex-wrap for vertical layout (wrapping to new columns)
+    if (flexWrap !== "nowrap") {
+      this.layoutColumnWithWrap(container, layoutProps, children);
+      return;
+    }
 
     // First pass: collect fixed height items and flex items
     const fixedItems = [];
@@ -1830,18 +1871,19 @@ class UILayout {
   }
 
   /**
-   * Layout children in a horizontal row with flex distribution
+   * Layout children in a horizontal row with flex distribution (row direction)
    * @param {WorldInstance} container - The container
    * @param {Object} layoutProps - Layout properties
    * @param {Array} children - Array of child instances
    */
-  layoutHorizontal(container, layoutProps, children) {
+  layoutRow(container, layoutProps, children) {
     // Get container box model
     const containerBoxModel = this.getBoxModel(container);
 
     // Extract layout parameters
     const gap = layoutProps.gap || 0;
     const alignment = layoutProps.alignItems || "start";
+    const flexWrap = layoutProps.flexWrap || "nowrap";
 
     // Calculate available space
     const contentWidth =
@@ -1857,6 +1899,12 @@ class UILayout {
       containerBoxModel.padding.bottom -
       containerBoxModel.border.top -
       containerBoxModel.border.bottom;
+
+    // Handle flex-wrap for horizontal layout (wrapping to new rows)
+    if (flexWrap !== "nowrap") {
+      this.layoutRowWithWrap(container, layoutProps, children);
+      return;
+    }
 
     // First pass: collect fixed width items and flex items
     const fixedItems = [];
@@ -2154,6 +2202,370 @@ class UILayout {
           currentX += spaceAround;
         }
       }
+    });
+  }
+
+  /**
+   * Layout children vertically with wrapping to new columns (column direction with wrap)
+   * @param {WorldInstance} container - The container
+   * @param {Object} layoutProps - Layout properties
+   * @param {Array} children - Array of child instances
+   */
+  layoutColumnWithWrap(container, layoutProps, children) {
+    const containerBoxModel = this.getBoxModel(container);
+    const gap = layoutProps.gap || 0;
+    const alignment = layoutProps.alignItems || "start";
+    const flexWrap = layoutProps.flexWrap || "nowrap";
+    const justifyContent = layoutProps.justifyContent || "start";
+
+    const contentHeight =
+      this.getInstanceHeight(container) -
+      containerBoxModel.padding.top -
+      containerBoxModel.padding.bottom -
+      containerBoxModel.border.top -
+      containerBoxModel.border.bottom;
+
+    const contentWidth =
+      this.getInstanceWidth(container) -
+      containerBoxModel.padding.left -
+      containerBoxModel.padding.right -
+      containerBoxModel.border.left -
+      containerBoxModel.border.right;
+
+    // Group children into columns based on height constraints
+    const columns = [];
+    let currentColumn = [];
+    let currentColumnHeight = 0;
+
+    children.forEach((child) => {
+      const childBoxModel = this.getBoxModel(child);
+      const childHeight = this.getOuterHeight(child);
+
+      // Check if child fits in current column
+      const neededHeight =
+        currentColumnHeight +
+        childHeight +
+        (currentColumn.length > 0 ? gap : 0);
+
+      if (neededHeight <= contentHeight || currentColumn.length === 0) {
+        // Add to current column
+        currentColumn.push(child);
+        currentColumnHeight = neededHeight;
+      } else {
+        // Start new column
+        if (currentColumn.length > 0) {
+          columns.push({
+            children: currentColumn,
+            height: currentColumnHeight,
+          });
+        }
+        currentColumn = [child];
+        currentColumnHeight = childHeight;
+      }
+    });
+
+    // Add the last column
+    if (currentColumn.length > 0) {
+      columns.push({
+        children: currentColumn,
+        height: currentColumnHeight,
+      });
+    }
+
+    // Calculate column positioning
+    let totalColumnsWidth = 0;
+    columns.forEach((column) => {
+      let maxColumnWidth = 0;
+      column.children.forEach((child) => {
+        maxColumnWidth = Math.max(maxColumnWidth, this.getOuterWidth(child));
+      });
+      column.width = maxColumnWidth;
+      totalColumnsWidth += maxColumnWidth;
+    });
+
+    // Add gaps between columns
+    const totalColumnGaps = columns.length > 1 ? (columns.length - 1) * gap : 0;
+    totalColumnsWidth += totalColumnGaps;
+
+    // Calculate starting position based on justifyContent
+    let startX = containerBoxModel.padding.left + containerBoxModel.border.left;
+    const extraSpace = Math.max(0, contentWidth - totalColumnsWidth);
+
+    switch (justifyContent) {
+      case "center":
+        startX += extraSpace / 2;
+        break;
+      case "end":
+        startX += extraSpace;
+        break;
+      case "space-between":
+        // Will be handled in column positioning
+        break;
+      case "space-around":
+        startX += extraSpace / (columns.length * 2);
+        break;
+      default: // "start"
+        break;
+    }
+
+    // Position columns
+    let currentX = startX;
+    const spaceBetween =
+      justifyContent === "space-between" && columns.length > 1
+        ? extraSpace / (columns.length - 1)
+        : 0;
+    const spaceAround =
+      justifyContent === "space-around" && columns.length > 0
+        ? extraSpace / columns.length
+        : 0;
+
+    // Handle wrap-reverse
+    const columnOrder =
+      flexWrap === "wrap-reverse" ? [...columns].reverse() : columns;
+
+    columnOrder.forEach((column, columnIndex) => {
+      // Position children within this column
+      let currentY =
+        containerBoxModel.padding.top + containerBoxModel.border.top;
+
+      column.children.forEach((child, childIndex) => {
+        const childBoxModel = this.getBoxModel(child);
+        const childStyles = this.getInstanceStyles(child);
+
+        // Handle vertical positioning within column
+        currentY += childBoxModel.margin.top;
+        this.setInstanceY(child, this.getInstanceY(container) + currentY);
+
+        // Handle horizontal alignment within column (cross-axis)
+        const alignSelf = childStyles.alignSelf || alignment;
+        switch (alignSelf) {
+          case "center":
+            this.setInstanceX(
+              child,
+              this.getInstanceX(container) +
+                currentX +
+                (column.width - this.getOuterWidth(child)) / 2 +
+                childBoxModel.margin.left
+            );
+            break;
+          case "end":
+            this.setInstanceX(
+              child,
+              this.getInstanceX(container) +
+                currentX +
+                column.width -
+                this.getInstanceWidth(child) -
+                childBoxModel.margin.right
+            );
+            break;
+          default: // "start"
+            this.setInstanceX(
+              child,
+              this.getInstanceX(container) +
+                currentX +
+                childBoxModel.margin.left
+            );
+            break;
+        }
+
+        currentY += this.getInstanceHeight(child) + childBoxModel.margin.bottom;
+        if (childIndex < column.children.length - 1) {
+          currentY += gap;
+        }
+      });
+
+      // Move to next column position
+      currentX += column.width + gap + spaceBetween;
+      if (justifyContent === "space-around") {
+        currentX += spaceAround;
+      }
+    });
+  }
+
+  /**
+   * Layout children horizontally with wrapping to new rows (row direction with wrap)
+   * @param {WorldInstance} container - The container
+   * @param {Object} layoutProps - Layout properties
+   * @param {Array} children - Array of child instances
+   */
+  layoutRowWithWrap(container, layoutProps, children) {
+    const containerBoxModel = this.getBoxModel(container);
+    const gap = layoutProps.gap || 0;
+    const alignment = layoutProps.alignItems || "start";
+    const flexWrap = layoutProps.flexWrap || "nowrap";
+    const justifyContent = layoutProps.justifyContent || "start";
+
+    const contentWidth =
+      this.getInstanceWidth(container) -
+      containerBoxModel.padding.left -
+      containerBoxModel.padding.right -
+      containerBoxModel.border.left -
+      containerBoxModel.border.right;
+
+    const contentHeight =
+      this.getInstanceHeight(container) -
+      containerBoxModel.padding.top -
+      containerBoxModel.padding.bottom -
+      containerBoxModel.border.top -
+      containerBoxModel.border.bottom;
+
+    // Group children into rows based on width constraints
+    const rows = [];
+    let currentRow = [];
+    let currentRowWidth = 0;
+
+    children.forEach((child) => {
+      const childBoxModel = this.getBoxModel(child);
+      const childWidth = this.getOuterWidth(child);
+
+      // Check if child fits in current row
+      const neededWidth =
+        currentRowWidth + childWidth + (currentRow.length > 0 ? gap : 0);
+
+      if (neededWidth <= contentWidth || currentRow.length === 0) {
+        // Add to current row
+        currentRow.push(child);
+        currentRowWidth = neededWidth;
+      } else {
+        // Start new row
+        if (currentRow.length > 0) {
+          rows.push({
+            children: currentRow,
+            width: currentRowWidth,
+          });
+        }
+        currentRow = [child];
+        currentRowWidth = childWidth;
+      }
+    });
+
+    // Add the last row
+    if (currentRow.length > 0) {
+      rows.push({
+        children: currentRow,
+        width: currentRowWidth,
+      });
+    }
+
+    // Calculate row positioning
+    let totalRowsHeight = 0;
+    rows.forEach((row) => {
+      let maxRowHeight = 0;
+      row.children.forEach((child) => {
+        maxRowHeight = Math.max(maxRowHeight, this.getOuterHeight(child));
+      });
+      row.height = maxRowHeight;
+      totalRowsHeight += maxRowHeight;
+    });
+
+    // Add gaps between rows
+    const totalRowGaps = rows.length > 1 ? (rows.length - 1) * gap : 0;
+    totalRowsHeight += totalRowGaps;
+
+    // Calculate starting position based on align-content (cross-axis alignment for wrapped lines)
+    let startY = containerBoxModel.padding.top + containerBoxModel.border.top;
+    const extraSpace = Math.max(0, contentHeight - totalRowsHeight);
+
+    // For simplicity, we'll use alignItems logic for cross-axis alignment of wrapped lines
+    switch (alignment) {
+      case "center":
+        startY += extraSpace / 2;
+        break;
+      case "end":
+        startY += extraSpace;
+        break;
+      default: // "start"
+        break;
+    }
+
+    // Position rows
+    let currentY = startY;
+
+    // Handle wrap-reverse
+    const rowOrder = flexWrap === "wrap-reverse" ? [...rows].reverse() : rows;
+
+    rowOrder.forEach((row, rowIndex) => {
+      // Calculate horizontal positioning within this row
+      let startX =
+        containerBoxModel.padding.left + containerBoxModel.border.left;
+      const rowExtraSpace = Math.max(0, contentWidth - row.width);
+      let spaceBetween = 0;
+      let spaceAround = 0;
+
+      switch (justifyContent) {
+        case "center":
+          startX += rowExtraSpace / 2;
+          break;
+        case "end":
+          startX += rowExtraSpace;
+          break;
+        case "space-between":
+          spaceBetween =
+            row.children.length > 1
+              ? rowExtraSpace / (row.children.length - 1)
+              : 0;
+          break;
+        case "space-around":
+          spaceAround =
+            row.children.length > 0 ? rowExtraSpace / row.children.length : 0;
+          startX += spaceAround / 2;
+          break;
+        default: // "start"
+          break;
+      }
+
+      // Position children within this row
+      let currentX = startX;
+
+      row.children.forEach((child, childIndex) => {
+        const childBoxModel = this.getBoxModel(child);
+        const childStyles = this.getInstanceStyles(child);
+
+        // Handle horizontal positioning within row
+        currentX += childBoxModel.margin.left;
+        this.setInstanceX(child, this.getInstanceX(container) + currentX);
+
+        // Handle vertical alignment within row (cross-axis)
+        const alignSelf = childStyles.alignSelf || alignment;
+        switch (alignSelf) {
+          case "center":
+            this.setInstanceY(
+              child,
+              this.getInstanceY(container) +
+                currentY +
+                (row.height - this.getOuterHeight(child)) / 2 +
+                childBoxModel.margin.top
+            );
+            break;
+          case "end":
+            this.setInstanceY(
+              child,
+              this.getInstanceY(container) +
+                currentY +
+                row.height -
+                this.getInstanceHeight(child) -
+                childBoxModel.margin.bottom
+            );
+            break;
+          default: // "start"
+            this.setInstanceY(
+              child,
+              this.getInstanceY(container) + currentY + childBoxModel.margin.top
+            );
+            break;
+        }
+
+        currentX += this.getInstanceWidth(child) + childBoxModel.margin.right;
+        if (childIndex < row.children.length - 1) {
+          currentX += gap + spaceBetween;
+          if (justifyContent === "space-around") {
+            currentX += spaceAround;
+          }
+        }
+      });
+
+      // Move to next row position
+      currentY += row.height + gap;
     });
   }
 }
