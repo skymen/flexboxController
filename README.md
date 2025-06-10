@@ -1,9 +1,9 @@
 <img src="./examples/cover.png" width="150" /><br>
 # UI Controller
 <i>A plugin to control flexbox layouts in Construct 3 projects.</i> <br>
-### Version 1.0.0.5
+### Version 1.1.0.0
 
-[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/flexboxController/releases/download/flexbox_controller-1.0.0.5.c3addon/flexbox_controller-1.0.0.5.c3addon)
+[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/flexboxController/releases/download/flexbox_controller-1.1.0.0.c3addon/flexbox_controller-1.1.0.0.c3addon)
 <br>
 <sub> [See all releases](https://github.com/skymen/flexboxController/releases) </sub> <br>
 
