@@ -303,23 +303,13 @@ class UILayout {
           // Reapply the percentage sizing now that parent dimensions are finalized
           this.applyPercentageSizing(child);
         }
-
-        // 6.2 And reapply layout to ensure positions are correct with new sizes
-        if (
-          layoutProps.display &&
-          layoutProps.position !== "absolute" &&
-          layoutProps.position !== "anchor"
-        ) {
-          this.applyNormalFlowLayout(instance, layoutProps, inFlowChildren);
-        }
       }
 
       // 6.3 Reapply normal flow layout if the container size changed and we have flex children
-      else if (
+      if (
         layoutProps.display &&
         layoutProps.position !== "absolute" &&
-        layoutProps.position !== "anchor" &&
-        this.hasFlexChildren(inFlowChildren)
+        layoutProps.position !== "anchor"
       ) {
         this.applyNormalFlowLayout(instance, layoutProps, inFlowChildren);
       }
@@ -536,6 +526,12 @@ class UILayout {
 
     // Apply min/max constraints
     this.applyMinMaxConstraints(instance, styles);
+
+    // TODO: process flow layout again
+    const layoutProps = this.getLayoutProperties(instance);
+    const inFlowChildren = [];
+
+    //this.applyNormalFlowLayout(instance);
   }
 
   /**
