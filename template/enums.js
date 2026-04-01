@@ -39,4 +39,5 @@ export const PROPERTY_TYPE = {
   GROUP: "group",
   LINK: "link",
   INFO: "info",
+  PROJECTFILE: "projectfile",
 };

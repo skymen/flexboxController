@@ -55,6 +55,7 @@ const Instance = createInstance(
         superObject.wrapperComponentId = runtimeConfig.id;
       }
       super(superObject);
+      this.events = {};
     }
   }
 );
@@ -65,11 +66,10 @@ Object.assign(Instance.prototype, exposedExps);
 const Type = createType(typeClass[runtimeConfig.addonType]);
 Object.assign(Type.prototype, enums);
 
-globalThis.C3[AddonTypeMap[runtimeConfig.addonType]][runtimeConfig.id] = {
-  Acts,
-  Cnds,
-  Exps,
-  Instance,
-  Type,
-  Plugin: createPlugin(baseClass[runtimeConfig.addonType]),
-};
+const plugin = createPlugin(baseClass[runtimeConfig.addonType]);
+plugin.Acts = Acts;
+plugin.Cnds = Cnds;
+plugin.Exps = Exps;
+plugin.Type = Type;
+plugin.Instance = Instance;
+globalThis.C3[AddonTypeMap[runtimeConfig.addonType]][runtimeConfig.id] = plugin;

@@ -117,7 +117,8 @@ const propertySchema = Joi.object({
       "object",
       "group",
       "link",
-      "info"
+      "info",
+      "projectfile"
     )
     .required(),
 
@@ -187,6 +188,12 @@ const propertySchema = Joi.object({
       }),
     })
     .when("type", {
+      is: "projectfile",
+      then: Joi.object({
+        filter: Joi.string().optional(),
+      }),
+    })
+    .when("type", {
       is: Joi.string().valid(
         "integer",
         "float",
@@ -221,18 +228,22 @@ const configSchema = Joi.object({
   hasDomside: Joi.boolean().required(),
   category: Joi.string()
     .required()
-    .valid(
-      "general",
-      "3d",
-      "data-and-storage",
-      "form-controls",
-      "input",
-      "media",
-      "monetisation",
-      "platform-specific",
-      "web",
-      "other"
-    ),
+    .when("addonType", {
+      is: "behavior",
+      then: Joi.string().valid("attributes", "general", "movements", "other"),
+      otherwise: Joi.string().valid(
+        "3d",
+        "data-and-storage",
+        "form-controls",
+        "general",
+        "input",
+        "media",
+        "monetisation",
+        "platform-specific",
+        "web",
+        "other"
+      ),
+    }),
   files: Joi.object({
     extensionScript: Joi.object({
       enabled: Joi.boolean().required(),
@@ -263,6 +274,19 @@ const configSchema = Joi.object({
             }),
           }
         )
+      )
+      .optional(),
+    remoteFileDependencies: Joi.array()
+      .items(
+        Joi.object({
+          src: Joi.string()
+            .required()
+            .pattern(/^(https:\/\/|\/\/)/, { name: "secure-url" })
+            .message(
+              "Remote script URLs must use https:// or same-protocol // URLs. http:// is not allowed for security reasons."
+            ),
+          type: Joi.string().valid("", "module").optional().allow(""),
+        })
       )
       .optional(),
     cordovaPluginReferences: Joi.array()
